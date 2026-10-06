@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!--
+================================================================
+株式会社ティーケープラン ブランドサイト デザイン案（9/26ハウススタイル版）
+  コンセプト：「プランは、筋書き（絵コンテ）。」
+    社名の「プラン」を、映像の絵コンテ＝コマ割りした筋書きとして読む。
+    WEBサイトも、動画も、広告も、最初はコマの並んだ一枚の筋書きから始まり、
+    再生ヘッドが通ると“動く成果”になる。三つの事業を一本の筋書きでつなぐ会社として表現。
+    ※社名の「ティーケー（TK）」は代表者のお名前の頭文字と重なる可能性があるため解釈せず、
+      「プラン」と事業内容のみから着想しています。所在地・地名からの着想も採用していません。
+    ・ヒーロー：絵コンテのコマが一つずつ描かれ、黄緑の再生ヘッドが横切るとコマが点灯するCanvas
+    ・右端のスクロールレール：フィルムのコマ送りの帯と再生ヘッド、タイムコード表示
+    ・図：「つくる → 映す → 届ける」の三コマを再生ヘッドが通過するSVG
+  書体：Shippori Mincho B1 ＋ Zen Kaku Gothic New ＋ Barlow Condensed ＋ IBM Plex Mono
+  配色：編集室の黒 #111417 ／ 再生ヘッドの黄緑 #C6E35A
+  デプロイ：Cloudflare Pages（Direct Upload）にこのファイルをそのままアップロード。
+            ビルド不要。外部依存は Google Fonts と Unsplash 画像のみ。
+
+  ■ 公開前の確認事項（チェックリスト）
+  【確認事項】英字表記「TK PLAN」・ロゴ文字は仮です（CSVに英字表記なし。社名の由来は未確認のため「TK」は解釈していません）。
+  【確認事項】キャッチコピー「描いた筋書きを、動く成果に。」と各見出しは制作側の案です。
+  【確認事項】各サービスの項目（要件整理・編集・運用レポート等）はCSVを膨らませた案です。実際の提供範囲をご確認ください。
+  【確認事項】広告運用の成果を断定・保証する表現は使っていません（景品表示法）。実績・数値・取引先はCSVに無いため未掲載です。
+  【確認事項】代表者の役職名は「代表取締役」と仮置きしています。
+  【確認事項】設立年月日・資本金・従業員数はCSVに無いため会社概要ではコメントアウトしています。
+  【確認事項】代表メッセージは草案です。ご本人の確認・修正を経て公開してください。署名欄の氏名は会社概要に記載のため省略しています。
+  【確認事項】画像はUnsplashの仮素材（差し替え推奨）：1587620962725-abab7fe55159 / 1555066931-4365d14bab8c / 1574717024653-61fd2cf4d44d / 1551288049-bebda4e38f71
+  【確認事項】OGP画像・favicon（仮の再生マーク）・公開URL
+  ※ご依頼に合わせ、連絡用のフォーム・エリア、代表者写真は設けていません。
+================================================================
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>株式会社ティーケープラン｜WEB制作・動画制作・WEB広告運用</title>
+<meta name="description" content="株式会社ティーケープランは、ITコンサルティング・プログラミング・LP作成等のWEBデザイン、動画の企画から納品、WEBマーケティングを活用した広告運用・集客支援を行う会社です。">
+<meta property="og:title" content="株式会社ティーケープラン｜描いた筋書きを、動く成果に。">
+<meta property="og:description" content="WEB制作・動画制作・WEB広告運用を、ひとつの筋書きで。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<!-- 【確認事項】og:url / og:image は公開ドメイン確定後に設定 -->
+<meta name="theme-color" content="#111417">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111417'/%3E%3Crect x='5' y='8' width='22' height='14' fill='none' stroke='%23C6E35A' stroke-width='1.6'/%3E%3Cpath d='M14 12l6 3-6 3z' fill='%23C6E35A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  /* 編集室の暗がりと、再生ヘッドの黄緑 */
+  --booth:#111417;        /* 基調：編集室 */
+  --booth-2:#181C21;      /* 一段明るいモニター枠 */
+  --booth-deep:#0B0D10;   /* フッター */
+  --cue:#C6E35A;          /* 差し色：再生ヘッド（キュー）の黄緑 */
+  --base:var(--booth);--base2:var(--booth-2);--deep:var(--booth-deep);
+  --base-rgb:17,20,23;
+  --text:#ECEEE8;--mute:#8C939A;--soft:rgba(236,238,232,.8);
+  --accent:var(--cue);--accent-rgb:198,227,90;
+  --line:rgba(236,238,232,.12);--line-strong:rgba(236,238,232,.3);
+  --paper:#ECEDE6;--ink:#15181B;--ink-rgb:21,24,27;--ink-mute:#5D6369;--accent-ink:#5E7A12;
+  --fallback:repeating-linear-gradient(90deg,rgba(198,227,90,.1) 0 1px,transparent 1px 48px),repeating-linear-gradient(0deg,rgba(198,227,90,.1) 0 1px,transparent 1px 27px),linear-gradient(135deg,#181C21,#0B0D10);
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --latin:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --num:var(--mono);
+  --header-h:72px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--base);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.9;letter-spacing:.04em;word-break:auto-phrase;text-wrap:pretty;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,p,li,dd,dt{word-break:auto-phrase}
+.nw{display:inline-block}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;background:var(--accent);color:var(--base);padding:10px 16px;text-decoration:none;font-weight:700;transition:top .2s}
+.skip:focus{top:calc(12px + env(safe-area-inset-top,0px))}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:min(1160px,100% - 48px);margin:0 auto}
+.sec{padding:clamp(96px,14vw,180px) 0;position:relative}
+.alt{background:var(--base2);--sec-bg:var(--base2)}
+.deep{background:var(--deep);--sec-bg:var(--deep)}
+.paper{background:var(--paper);color:var(--ink);--line:rgba(var(--ink-rgb),.16);--line-strong:rgba(var(--ink-rgb),.5);--mute:var(--ink-mute);--soft:rgba(var(--ink-rgb),.8);--sec-bg:var(--paper);--accent:var(--accent-ink)}
+.lead{max-width:34em;margin:0 0 1.4em}
+p{margin:0 0 1.3em}
+
+/* header */
+.header{position:fixed;inset:0 0 auto 0;z-index:100;padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid transparent;transition:background .4s,border-color .4s,backdrop-filter .4s}
+.header.is-scrolled{background:rgba(var(--base-rgb),.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)}
+.header-in{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(20px,4vw,56px);max-width:1440px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.logo svg{flex:none}
+.gnav ul{list-style:none;margin:0;padding:0;display:flex;gap:clamp(16px,2.2vw,34px)}
+.gnav a{position:relative;display:block;padding:6px 0;text-decoration:none;font-size:13px;letter-spacing:.12em}
+.menu-btn{display:none;background:none;border:0;color:var(--text);width:44px;height:44px;cursor:pointer;position:relative;flex:none}
+@media (max-width:900px){
+ :root{--header-h:64px}
+ .menu-btn{display:block;z-index:120}
+ .gnav{position:fixed;inset:0;background:rgba(var(--base-rgb),.97);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;padding:env(safe-area-inset-top,0px) 24px env(safe-area-inset-bottom,0px)}
+ .gnav.is-open{opacity:1;visibility:visible}
+ .gnav ul{flex-direction:column;align-items:center;gap:26px}
+ .gnav a{font-family:var(--serif);font-size:20px;letter-spacing:.14em}
+}
+
+/* hero shared */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.js .hero [data-in]{opacity:0;transform:translateY(14px);transition:opacity 1.2s cubic-bezier(.22,.7,.2,1),transform 1.2s cubic-bezier(.22,.7,.2,1)}
+.js .hero .v[data-in]{transform:translateY(-14px)}
+.js .is-loaded .hero [data-in]{opacity:1;transform:none}
+.is-loaded .hero [data-in="2"]{transition-delay:.4s}
+.is-loaded .hero [data-in="3"]{transition-delay:.85s}
+.is-loaded .hero [data-in="4"]{transition-delay:1.25s}
+.scroll-cue{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;font-family:var(--latin);font-size:12px;letter-spacing:.24em;color:var(--mute);text-decoration:none;text-transform:uppercase}
+.scroll-cue i{display:block;width:1px;height:44px;background:linear-gradient(var(--mute),transparent);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity 1s cubic-bezier(.22,.7,.2,1),transform 1s cubic-bezier(.22,.7,.2,1)}
+.js .reveal.is-in{opacity:1;transform:none}
+.js .reveal--fade{transform:none}
+
+/* photos */
+.ph{position:relative;overflow:hidden;margin:0;background:linear-gradient(135deg,var(--base2),var(--deep))}
+.ph img{width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.03)}
+.ph.is-fallback{background:var(--fallback)}
+
+/* concept */
+.concept-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:center}
+.concept-text p{max-width:30em}
+.fig{margin:0}
+.fig svg{display:block;width:100%;height:auto;max-width:520px;margin:0 auto;overflow:visible}
+.fig figcaption{margin-top:16px;text-align:center;font-size:13px;color:var(--mute);letter-spacing:.08em}
+.fig .ln{fill:none;stroke:var(--accent);stroke-width:1.3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.45,.05,.2,1) .3s}
+.fig .ln.d2{transition-delay:.9s}.fig .ln.d3{transition-delay:1.5s}.fig .ln.d4{transition-delay:2.1s}
+.fig .soft{fill:none;stroke:var(--line-strong);stroke-width:1}
+.fig .dot{fill:var(--accent);opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.3);transition:opacity .8s 1.2s,transform .8s cubic-bezier(.3,1.6,.5,1) 1.2s}
+.fig .lbl{fill:currentColor;font-family:var(--serif);font-size:17px;letter-spacing:.16em;opacity:0;transition:opacity 1s 1.8s}
+.fig .lbl-s{fill:var(--mute);font-family:var(--sans);font-size:11px;letter-spacing:.14em;opacity:0;transition:opacity 1s 2s}
+.fig.is-in .ln{stroke-dashoffset:0}
+.fig.is-in .dot{opacity:1;transform:none}
+.fig.is-in .lbl,.fig.is-in .lbl-s{opacity:1}
+@media (max-width:900px){.concept-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* band */
+.band{position:relative;height:clamp(260px,44vw,540px);overflow:hidden;margin:0;background:var(--fallback)}
+.band img{position:absolute;left:0;top:-9%;width:100%;height:118%;object-fit:cover;filter:saturate(.7) brightness(.66);will-change:transform}
+.band figcaption{position:absolute;left:clamp(24px,6vw,88px);bottom:clamp(24px,5vw,56px);z-index:1;font-family:var(--serif);font-size:clamp(18px,2vw,24px);letter-spacing:.16em;line-height:1.9;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+
+/* business rows */
+.biz-intro{max-width:36em;margin:-24px 0 clamp(56px,8vw,96px);color:var(--mute)}
+.biz{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.biz+.biz{margin-top:clamp(72px,10vw,128px)}
+.biz:nth-of-type(even) .biz__media{order:2}
+.biz__media{aspect-ratio:4/3}
+.biz__media img{transform:scale(1.06);transition:transform 2.2s cubic-bezier(.2,.6,.2,1)}
+.biz.is-in .biz__media img{transform:scale(1)}
+.biz:hover .biz__media img{transform:scale(1.03)}
+.biz__kind{margin:0 0 10px;font-size:13px;letter-spacing:.16em;color:var(--accent)}
+.biz h3{font-family:var(--serif);font-weight:600;font-size:clamp(21px,2.3vw,28px);line-height:1.6;letter-spacing:.08em;margin:0 0 18px}
+.biz p{color:var(--soft)}
+.tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tags li{font-size:12.5px;letter-spacing:.08em;padding:4px 13px;border:1px solid var(--line-strong);border-radius:999px}
+.note{font-size:13px;color:var(--mute);margin:18px 0 0}
+@media (max-width:900px){.biz{grid-template-columns:minmax(0,1fr)}.biz:nth-of-type(even) .biz__media{order:0}}
+
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:clamp(16px,2.4vw,32px);position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:11px;height:1px;background:var(--line)}
+.steps::after{content:"";position:absolute;left:0;top:11px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 2.4s cubic-bezier(.6,.1,.2,1)}
+.steps.is-in::after{transform:scaleX(1)}
+.step{position:relative;padding-top:46px}
+.step__dot{position:absolute;left:0;top:0;width:23px;height:23px;border-radius:50%;border:1px solid var(--mute);background:var(--sec-bg,var(--base));display:grid;place-items:center}
+.step__dot::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1) var(--d,0s)}
+.steps.is-in .step__dot::after{transform:scale(1)}
+.step__no{font-family:var(--num);font-size:13px;color:var(--accent);letter-spacing:.12em}
+.step h3{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:.18em;margin:6px 0 4px}
+.step__sub{font-size:12.5px;color:var(--mute);letter-spacing:.1em;margin:0 0 10px}
+.step p{font-size:14.5px;margin:0;color:var(--soft)}
+.loop{display:flex;align-items:center;gap:14px;margin:52px 0 0;color:var(--mute);font-size:14px}
+.loop svg{flex:none}
+@media (max-width:900px){
+ .steps{grid-template-columns:minmax(0,1fr);gap:0;padding-left:42px}
+ .steps::before,.steps::after{left:11px;right:auto;top:10px;bottom:10px;width:1px;height:auto}
+ .steps::after{transform:scaleY(0);transform-origin:top}
+ .steps.is-in::after{transform:scaleY(1)}
+ .step{padding:0 0 36px}
+ .step__dot{left:-42px}
+}
+
+/* values */
+.values{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.values li{padding:8px clamp(18px,3vw,40px) 8px;border-left:1px solid var(--line)}
+.values li:first-child{border-left:0;padding-left:0}
+.values h3{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.12em;margin:0 0 12px;line-height:1.6}
+.values h3 i{display:block;font-style:normal;font-family:var(--latin);font-size:13px;letter-spacing:.2em;color:var(--accent);margin-bottom:8px}
+.values p{margin:0;font-size:14.5px;color:var(--soft)}
+@media (max-width:860px){.values{grid-template-columns:minmax(0,1fr)}.values li{border-left:0;border-top:1px solid var(--line);padding:24px 0}.values li:first-child{border-top:0;padding-top:0}}
+
+/* message */
+.msg{display:flex;flex-direction:row-reverse;gap:clamp(40px,6vw,96px);justify-content:center;align-items:flex-start}
+.msg__title{writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;font-size:clamp(28px,3vw,40px);letter-spacing:.2em;line-height:1.7;margin:0;flex:none}
+.msg__body{writing-mode:vertical-rl;font-family:var(--serif);font-size:16.5px;line-height:2.3;letter-spacing:.14em;height:30em;max-width:100%;overflow-x:auto;overflow-y:hidden}
+.msg__body p{margin:0 0 0 1.5em}
+.msg__body .first{font-size:1.25em}
+.msg__sign{margin-top:auto!important;text-align:end;font-family:var(--sans)}
+.msg__sign small{display:block;font-size:13px;color:var(--mute);letter-spacing:.2em}
+.msg__sign strong{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.3em}
+@media (max-width:900px){
+ .msg{flex-direction:column;gap:32px}
+ .msg__title,.msg__body{writing-mode:horizontal-tb;height:auto}
+ .msg__body{line-height:2.1;letter-spacing:.06em;overflow:visible}
+ .msg__body p{margin:0 0 1.4em}
+ .msg__sign{text-align:right}
+}
+
+/* company */
+.company-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:clamp(32px,6vw,96px);align-items:start}
+.company-grid .sh{margin-bottom:24px}
+@media (max-width:900px){.company-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* footer */
+.footer{background:var(--deep);border-top:1px solid var(--line);padding:clamp(56px,8vw,80px) 0 calc(40px + env(safe-area-inset-bottom,0px))}
+.footer-in{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px}
+.footer-tag{margin:18px 0 0;font-family:var(--serif);font-size:clamp(15px,1.6vw,19px);letter-spacing:.18em}
+.footer-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 26px}
+.footer-nav a{text-decoration:none;font-size:13px;color:var(--mute);letter-spacing:.1em;transition:color .3s}
+.footer-nav a:hover{color:var(--text)}
+.copy{width:100%;margin:36px 0 0;font-family:var(--latin);font-size:12.5px;color:var(--mute);letter-spacing:.1em}
+.footer--center .footer-in{flex-direction:column;align-items:center;text-align:center}
+.footer--center .footer-nav ul{justify-content:center}
+
+/* rail base */
+.rail{position:fixed;right:clamp(10px,1.6vw,24px);top:50%;transform:translateY(-50%);height:min(54vh,480px);width:18px;z-index:90;pointer-events:none}
+.rail__line{position:absolute;left:8px;top:0;bottom:0;width:1px;background:var(--line-strong);opacity:.6}
+.rail__fill{position:absolute;left:8px;top:0;width:1px;height:100%;background:var(--accent);transform-origin:top;transform:scaleY(0)}
+.rail__tick{position:absolute;left:4px;width:9px;height:1px;background:rgba(var(--accent-rgb),.45);transition:width .4s,background .4s}
+.rail__tick.is-passed{width:11px;background:var(--accent)}
+.rail.on-light{--line-strong:rgba(var(--ink-rgb),.4)}
+@media (max-width:900px){.rail{right:6px;height:38vh}.rail__read{display:none}}
+
+.sh{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:end;gap:10px 28px;margin:0 0 clamp(40px,6vw,72px)}
+.sh__en{margin:0;font-family:var(--latin);font-weight:300;font-size:clamp(46px,7vw,92px);line-height:.9;letter-spacing:.02em;color:var(--accent);text-transform:uppercase}
+.sh h2{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,28px);line-height:1.6;letter-spacing:.12em;margin:0;padding-bottom:10px;border-bottom:1px solid var(--line)}
+@media (max-width:640px){.sh{grid-template-columns:minmax(0,1fr)}}
+.gnav a::after{content:"";position:absolute;left:50%;bottom:-4px;width:5px;height:5px;background:var(--accent);transform:translateX(-50%) scale(0);transition:transform .3s}
+.gnav a:hover::after,.gnav a:focus-visible::after{transform:translateX(-50%) scale(1)}
+.menu-btn span{position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;transition:transform .3s,opacity .3s}
+.menu-btn span:nth-child(1){top:16px}.menu-btn span:nth-child(2){top:22px}.menu-btn span:nth-child(3){top:28px}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.profile{width:100%;border-collapse:collapse;font-size:15px}
+.profile th,.profile td{text-align:left;vertical-align:top;padding:22px 0;border-bottom:1px solid var(--line);font-weight:400}
+.profile tr:first-child th,.profile tr:first-child td{border-top:1px solid var(--line-strong)}
+.profile th{width:9em;color:var(--mute);font-size:14px;letter-spacing:.14em;padding-right:24px}
+.profile ul{margin:0;padding:0;list-style:none}
+.profile li{position:relative;padding-left:1.2em}
+.profile li+li{margin-top:.3em}
+.profile li::before{content:"";position:absolute;left:0;top:.8em;width:6px;height:6px;background:var(--accent);border-radius:0}
+@media (max-width:640px){
+ .profile th,.profile td{display:block;width:auto;padding:0}
+ .profile th{padding-top:20px;border-bottom:0}
+ .profile td{padding:4px 0 20px}
+ .profile tr:first-child td{border-top:0}
+}
+.logo__t{display:flex;flex-direction:column;line-height:1.05}
+.logo__t b{font-family:var(--latin);font-weight:600;font-size:22px;letter-spacing:.14em}
+.logo__t small{font-size:10px;color:var(--mute);letter-spacing:.14em}
+
+/* hero : A field + vertical catch right */
+.hero{background:radial-gradient(120% 90% at 80% 10%,#1A1F25 0%,var(--base) 60%)}
+.hero__veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(17,20,23,.5) 0%,transparent 28%,transparent 60%,rgba(17,20,23,.92) 100%)}
+.hero__in{position:relative;z-index:1;min-height:100vh;min-height:100svh;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:40px;padding:calc(var(--header-h) + 48px) clamp(48px,7vw,110px) 76px clamp(20px,5vw,72px)}
+.hero h1{writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;font-size:clamp(36px,4.4vw,60px);line-height:1.55;letter-spacing:.2em;margin:0;align-self:center;text-shadow:0 2px 20px rgba(11,13,16,.8)}
+.hero h1 span{display:block}
+.hero h1 span+span{padding-top:2em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero__copy{max-width:30em}
+.hero__tc{display:flex;gap:18px;font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.12em;margin:0 0 14px}
+.hero__tc span:last-child{color:var(--mute)}
+.hero__lead{font-size:15px;color:var(--soft);margin:0}
+.hero .scroll-cue{left:50%;bottom:20px;transform:translateX(-50%);flex-direction:column}
+@media (max-width:760px){
+ .hero__in{grid-template-columns:minmax(0,1fr);align-content:space-between;padding:calc(var(--header-h) + 40px) 22px 84px}
+ .hero h1{writing-mode:horizontal-tb;font-size:clamp(28px,8.4vw,40px);letter-spacing:.08em;align-self:start;order:-1}
+ .hero h1 span+span{padding-top:0;padding-left:1em}
+}
+
+/* concept fig */
+.fig .frame{fill:rgba(198,227,90,.04)}
+.fig .head{stroke:var(--accent);stroke-width:1.6;opacity:0;transition:opacity .6s 2.6s}
+.fig.is-in .head{opacity:1;animation:sweep 5s 2.8s ease-in-out infinite alternate}
+@keyframes sweep{from{transform:translateX(0)}to{transform:translateX(360px)}}
+
+/* strength */
+.str{list-style:none;margin:0;padding:0;counter-reset:s}
+.str li{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(20px,4vw,64px);padding:clamp(28px,4vw,44px) 0;border-top:1px solid var(--line)}
+.str li:last-child{border-bottom:1px solid var(--line)}
+.str h3{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.2vw,26px);letter-spacing:.12em;margin:0;line-height:1.6}
+.str h3 small{display:block;font-family:var(--latin);font-weight:400;font-size:14px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+.str p{margin:0;color:var(--soft)}
+@media (max-width:760px){.str li{grid-template-columns:minmax(0,1fr)}}
+
+/* rail : film strip + playhead */
+.rail__strip{position:absolute;left:2px;top:0;bottom:0;width:13px;border-left:1px solid var(--line-strong);border-right:1px solid var(--line-strong);background:repeating-linear-gradient(180deg,transparent 0 6px,rgba(236,238,232,.18) 6px 9px);opacity:.7}
+.rail__fill{left:8px;width:1px}
+.rail__head{position:absolute;left:-3px;top:0;width:23px;height:2px;background:var(--accent);box-shadow:0 0 8px rgba(198,227,90,.9);transform:translateY(-50%)}
+.rail__head::before{content:"";position:absolute;left:-6px;top:-4px;border:5px solid transparent;border-left:6px solid var(--accent)}
+.rail__read{position:absolute;right:24px;top:0;transform:translateY(-50%);font-family:var(--mono);font-size:11px;color:var(--accent);writing-mode:vertical-rl;letter-spacing:.1em;white-space:nowrap}
+.rail.on-light .rail__head{background:var(--accent-ink);box-shadow:none}
+.rail.on-light .rail__head::before{border-left-color:var(--accent-ink)}
+.rail.on-light .rail__read{color:var(--accent-ink)}
+
+@media (prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation:none!important;transition:none!important}
+ .js .reveal,.js .hero [data-in]{opacity:1;transform:none}
+ .fig .ln{stroke-dashoffset:0}.fig .dot,.fig .lbl,.fig .lbl-s{opacity:1;transform:none}
+ .steps::after{transform:none}.step__dot::after{transform:scale(1)}
+ .biz__media img{transform:none}
+ .band img{transform:none!important}
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="header" id="header">
+  <div class="header-in">
+    <!-- 【確認事項】英字ロゴ「TK PLAN」は仮（CSVに英字表記なし） -->
+    <a class="logo" href="#top" aria-label="株式会社ティーケープラン トップへ"><svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><rect x="1" y="1" width="28" height="20" fill="none" stroke="#C6E35A" stroke-width="1.3"/><path d="M12 6.5l7 4.5-7 4.5z" fill="#C6E35A"/></svg><span class="logo__t"><b>TK PLAN</b><small>株式会社ティーケープラン</small></span></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-controls="gnav" aria-expanded="false" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="gnav" id="gnav" aria-label="メインメニュー">
+      <ul>
+      <li><a href="#concept">筋書きのこと</a></li>
+      <li><a href="#business">事業内容</a></li>
+      <li><a href="#strength">強み</a></li>
+      <li><a href="#process">進め方</a></li>
+      <li><a href="#message">代表メッセージ</a></li>
+      <li><a href="#company">会社概要</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="rail" id="rail" aria-hidden="true">
+  <div class="rail__line"></div>
+  <div class="rail__fill" id="railFill"></div>
+  <div class="rail__strip" aria-hidden="true"></div><div class="rail__head" id="railHead"></div><span class="rail__read" id="railRead">00:00:00</span>
+</div>
+
+<main id="main">
+<!-- ===== Hero (A: 全面Canvas＋右に縦書き) ===== -->
+<section class="hero" id="top" data-rail aria-labelledby="heroTitle">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="hero__in">
+    <div class="hero__copy" data-in="3">
+      <p class="hero__tc" aria-hidden="true"><span>● REC</span><span id="heroTc">00:00:00:00</span></p>
+      <p class="hero__lead">株式会社ティーケープランは、WEBサイトやLPの制作・プログラミング・ITコンサルティング、動画の企画から納品、WEBマーケティングを活用した広告運用・集客支援までを、ひとつの筋書きで手がける会社です。</p>
+    </div>
+    <!-- 【確認事項】キャッチコピーは制作側の案 -->
+    <h1 class="v" id="heroTitle" data-in="1"><span>描いた筋書きを、</span><span><em>動く</em>成果に。</span></h1>
+  </div>
+  <a class="scroll-cue" href="#concept"><i></i>Scroll</a>
+</section>
+
+<!-- ===== Concept ===== -->
+<section class="sec" id="concept" data-rail aria-labelledby="conceptTitle">
+  <div class="wrap concept-grid">
+    <div class="concept-text reveal">
+      <div class="sh sh--enbig"><p class="sh__en" lang="en" aria-hidden="true">Plan</p><h2 id="conceptTitle">プランは、一枚の筋書き。</h2></div>
+      <!-- 【確認事項】社名「プラン」を絵コンテ（筋書き）と読むのは制作側の解釈 -->
+      <p>映像をつくるとき、最初に描くのは絵コンテです。どの場面で、何を見せ、どこで心を動かすのか。コマを並べた一枚の筋書きが、撮影も編集も迷わせません。</p>
+      <p>私たちは、社名の「プラン」をこの筋書きのことだと考えています。WEBサイトも、動画も、広告も、別々に発注すれば、それぞれが違う話をはじめてしまう。だから最初に、誰に、何を、どの順番で伝えるのかを一枚に描きます。</p>
+      <p>筋書きができたら、あとは再生するだけ。ページをつくり、映像に映し、広告で届ける。三つの仕事が、同じ物語の続きとして動きはじめます。</p>
+    </div>
+    <figure class="fig reveal--fade" data-draw>
+      <svg viewBox="0 0 440 300" role="img" aria-labelledby="figT figD">
+        <title id="figT">三コマの筋書きの図</title>
+        <desc id="figD">「つくる」「映す」「届ける」の三つのコマが横に並び、矢印でつながっている。黄緑の再生ヘッドが三つのコマを左から右へ通過する。</desc>
+        <rect class="frame" x="20" y="80" width="120" height="76"/><rect class="frame" x="160" y="80" width="120" height="76"/><rect class="frame" x="300" y="80" width="120" height="76"/>
+        <path class="ln" pathLength="1" d="M20 80h120v76H20z"/>
+        <path class="ln d2" pathLength="1" d="M160 80h120v76H160z"/>
+        <path class="ln d3" pathLength="1" d="M300 80h120v76H300z"/>
+        <path class="ln" pathLength="1" d="M36 96h40M36 106h88M36 116h88M36 126h60"/>
+        <path class="ln d2" pathLength="1" d="M210 104l22 14-22 14z"/>
+        <path class="ln d3" pathLength="1" d="M316 140l24-20 22 10 24-26 18 8"/>
+        <path class="ln d4" pathLength="1" d="M20 210H420 M408 203l12 7-12 7"/>
+        <circle class="dot" cx="80" cy="210" r="4.5"/><circle class="dot" cx="220" cy="210" r="4.5"/><circle class="dot" cx="360" cy="210" r="4.5"/>
+        <text class="lbl" x="80" y="250" text-anchor="middle">つくる</text>
+        <text class="lbl" x="220" y="250" text-anchor="middle">映す</text>
+        <text class="lbl" x="360" y="250" text-anchor="middle">届ける</text>
+        <text class="lbl-s" x="80" y="272" text-anchor="middle">WEB・IT</text>
+        <text class="lbl-s" x="220" y="272" text-anchor="middle">動画</text>
+        <text class="lbl-s" x="360" y="272" text-anchor="middle">広告・集客</text>
+        <line class="head" x1="40" y1="62" x2="40" y2="226"/>
+      </svg>
+      <figcaption>三つのコマを、ひとつの再生でつなぐ。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<figure class="band">
+  <!-- 画像：Unsplash（仮）1587620962725-abab7fe55159 差し替え推奨 -->
+  <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&amp;fit=crop&amp;w=2000&amp;q=72" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-fallback');this.remove()">
+  <figcaption>つくって終わり、<br>にしない。</figcaption>
+</figure>
+
+<!-- ===== Business ===== -->
+<section class="sec" id="business" data-rail aria-labelledby="bizTitle">
+  <div class="wrap">
+    <div class="sh sh--enbig"><p class="sh__en" lang="en" aria-hidden="true">Works</p><h2 id="bizTitle">事業内容</h2></div>
+    <!-- 【確認事項】各サービスの項目はCSVを膨らませた案 -->
+    <article class="biz reveal" aria-labelledby="b1">
+      <figure class="biz__media ph">
+        <!-- 画像：Unsplash（仮）1555066931-4365d14bab8c -->
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&amp;fit=crop&amp;w=1400&amp;q=72" alt="プログラムのコードが映る画面" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-fallback');this.remove()">
+      </figure>
+      <div>
+        <p class="biz__kind">SCENE 01 ── つくる</p>
+        <h3 id="b1">ITコンサルティングと、<br>WEBデザイン</h3>
+        <p>ITに関するご相談から、プログラミングの作成や提案、LP作成などのWEBデザインまで。目的に合った仕組みとページを、筋書きどおりに形にします。</p>
+        <ul class="tags"><li>ITに関するご相談・提案</li><li>プログラミングの作成</li><li>LP・WEBページのデザイン</li></ul>
+      </div>
+    </article>
+    <article class="biz reveal" aria-labelledby="b2">
+      <figure class="biz__media ph">
+        <!-- 画像：Unsplash（仮）1574717024653-61fd2cf4d44d -->
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&amp;fit=crop&amp;w=1400&amp;q=72" alt="動画編集ソフトのタイムライン画面" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-fallback');this.remove()">
+      </figure>
+      <div>
+        <p class="biz__kind">SCENE 02 ── 映す</p>
+        <h3 id="b2">動画の企画立案から、<br>作成、納品まで</h3>
+        <p>伝えたいことを、見たくなる映像に。企画立案で場面を決め、作成し、使う場所に合わせた形で納品します。</p>
+        <ul class="tags"><li>動画の企画立案</li><li>動画の作成</li><li>納品・活用のご提案</li></ul>
+      </div>
+    </article>
+    <article class="biz reveal" aria-labelledby="b3">
+      <figure class="biz__media ph">
+        <!-- 画像：Unsplash（仮）1551288049-bebda4e38f71 -->
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1400&amp;q=72" alt="アクセス解析のグラフが並ぶ画面" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-fallback');this.remove()">
+      </figure>
+      <div>
+        <p class="biz__kind">SCENE 03 ── 届ける</p>
+        <h3 id="b3">WEBマーケティングを活用した、<br>広告運用・集客支援</h3>
+        <p>広告を運用し、集客を支援します。数字を見ながら、届け方を少しずつ磨いていく。筋書きの「その後」まで見届けます。</p>
+        <ul class="tags"><li>WEB広告の運用</li><li>集客の支援</li><li>数値をもとにした改善</li></ul>
+        <!-- 【確認事項】成果の保証と受け取られる表現は避けています（景品表示法） -->
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== Strength ===== -->
+<section class="sec alt" id="strength" data-rail aria-labelledby="stTitle">
+  <div class="wrap">
+    <div class="sh sh--enbig"><p class="sh__en" lang="en" aria-hidden="true">Story</p><h2 id="stTitle">一本の筋書きで、つなぐ強み。</h2></div>
+    <!-- 【確認事項】強みの文言は制作側の案 -->
+    <ol class="str reveal">
+      <li><h3><small>One desk</small>窓口がひとつ</h3><p>WEB、動画、広告をまとめて相談できるので、制作会社ごとに説明し直す手間がかかりません。</p></li>
+      <li><h3><small>Backward</small>伝えたいことから逆算</h3><p>手段から入らず、誰に何を伝えたいのかを整理してから、ページ・映像・広告の役割を決めます。</p></li>
+      <li><h3><small>After release</small>出したあとも、見続ける</h3><p>公開や配信で終わらせず、広告の数字を見ながら、ページや素材の改善につなげます。</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== Process ===== -->
+<section class="sec" id="process" data-rail aria-labelledby="prTitle">
+  <div class="wrap">
+    <div class="sh sh--enbig"><p class="sh__en" lang="en" aria-hidden="true">Flow</p><h2 id="prTitle">進め方</h2></div>
+    <!-- 【確認事項】一般的な流れとしての案。実際の手順なので番号を使用 -->
+    <ol class="steps reveal--fade" data-draw style="--n:4">
+      <li class="step"><span class="step__dot" aria-hidden="true"></span><span class="step__no">01</span><h3>聴く</h3><p class="step__sub">ヒアリング</p><p>目的・相手・期日を伺い、課題を整理します。</p></li>
+      <li class="step" style="--d:.6s"><span class="step__dot" aria-hidden="true"></span><span class="step__no">02</span><h3>描く</h3><p class="step__sub">企画・ご提案</p><p>WEB・動画・広告の組み合わせと、筋書きをご提案します。</p></li>
+      <li class="step" style="--d:1.2s"><span class="step__dot" aria-hidden="true"></span><span class="step__no">03</span><h3>つくる</h3><p class="step__sub">制作・作成</p><p>ページや動画を制作し、確認を重ねて仕上げます。</p></li>
+      <li class="step" style="--d:1.8s"><span class="step__dot" aria-hidden="true"></span><span class="step__no">04</span><h3>回す</h3><p class="step__sub">公開・運用</p><p>公開・納品後は、広告運用と改善で集客を支えます。</p></li>
+    </ol>
+    <p class="loop reveal"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M22 9a9 9 0 1 0 1.6 7" fill="none" stroke="#C6E35A" stroke-width="1.4" stroke-linecap="round"/><path d="M22.6 3.6 22 9l-5.2-1" fill="none" stroke="#C6E35A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>運用で見えた数字は、次の筋書きへ。</p>
+  </div>
+</section>
+
+<!-- ===== Message（草案） ===== -->
+<section class="sec paper" id="message" data-rail data-light aria-labelledby="msgTitle">
+  <!-- 【確認事項】代表メッセージは草案です。ご本人の確認・修正を経て公開してください -->
+  <div class="wrap">
+    <div class="msg reveal">
+      <h2 class="msg__title" id="msgTitle">筋書きから、<br>一緒に。</h2>
+      <div class="msg__body">
+        <p class="first">よいページも、よい映像も、よい広告も、最初は一枚の筋書きから始まります。</p>
+        <p>ところが実際には、ページはページ、動画は動画、広告は広告と、別々に頼まれることがほとんどです。そのたびに説明をし直し、少しずつ話がずれていく。</p>
+        <p>私たちは、その筋書きを最初に一緒に描くことを大切にしています。描いた筋書きは、つくって、映して、届けるまで、同じ一本で通します。</p>
+        <p>公開したあとも、数字を見ながら次の場面を考える。長く付き合えるチームでありたいと思っています。</p>
+        <!-- 【確認事項】署名欄の氏名は会社概要に記載のため省略。役職名は仮 -->
+        <p class="msg__sign"><small>代表取締役</small><strong>清野剛史</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Company ===== -->
+<section class="sec" id="company" data-rail aria-labelledby="coTitle">
+  <div class="wrap company-grid">
+    <div class="reveal"><div class="sh sh--enbig"><p class="sh__en" lang="en" aria-hidden="true">Info</p><h2 id="coTitle">会社概要</h2></div></div>
+    <div class="reveal">
+<table class="profile"><tbody>
+  <tr><th scope="row">商号</th><td>株式会社ティーケープラン</td></tr>
+  <!-- 【確認事項】役職名の表記（代表取締役と仮置き） -->
+  <tr><th scope="row">代表者</th><td>代表取締役　清野剛史</td></tr>
+  <tr><th scope="row">所在地</th><td>〒153-0061<br>東京都目黒区中目黒5-26-7</td></tr>
+  <tr><th scope="row">事業内容</th><td><ul><li>ITコンサルティング、プログラミング作成や提案、LP作成等のWEBデザイン業務</li><li>動画における企画立案、作成、納品</li><li>広告サービス業：WEBマーケティングを活用した広告運用・集客支援事業</li></ul></td></tr>
+  <!-- 【確認事項】設立年月日・資本金・従業員数はCSVに無いため未掲載。確定後にコメントを外して記入
+  <tr><th scope="row">設立</th><td>　年　月</td></tr>
+  <tr><th scope="row">資本金</th><td>　万円</td></tr>
+  <tr><th scope="row">従業員数</th><td>　名</td></tr>
+  -->
+</tbody></table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <div>
+      <a class="logo" href="#top" aria-label="株式会社ティーケープラン トップへ"><svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><rect x="1" y="1" width="28" height="20" fill="none" stroke="#C6E35A" stroke-width="1.3"/><path d="M12 6.5l7 4.5-7 4.5z" fill="#C6E35A"/></svg><span class="logo__t"><b>TK PLAN</b><small>株式会社ティーケープラン</small></span></a>
+      <p class="footer-tag">描いた筋書きを、動く成果に。</p>
+    </div>
+    <nav class="footer-nav" aria-label="フッターメニュー">
+      <ul>
+      <li><a href="#concept">筋書きのこと</a></li>
+      <li><a href="#business">事業内容</a></li>
+      <li><a href="#strength">強み</a></li>
+      <li><a href="#process">進め方</a></li>
+      <li><a href="#message">代表メッセージ</a></li>
+      <li><a href="#company">会社概要</a></li>
+      </ul>
+    </nav>
+    <p class="copy"><small>&copy; <span id="year">2026</span> 株式会社ティーケープラン</small></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var railHooks = [], revealHooks = [];
+var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+
+/* header */
+var header = document.getElementById('header');
+
+/* menu */
+var btn = document.getElementById('menuBtn'), nav = document.getElementById('gnav');
+function setMenu(open){
+  btn.setAttribute('aria-expanded', String(open));
+  btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  nav.classList.toggle('is-open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+  if (open){ var f = nav.querySelector('a'); if (f) f.focus(); }
+}
+btn.addEventListener('click', function(){ setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
+nav.addEventListener('click', function(e){ if (e.target.closest('a') && nav.classList.contains('is-open')) setMenu(false); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && nav.classList.contains('is-open')){ setMenu(false); btn.focus(); } });
+matchMedia('(min-width:901px)').addEventListener('change', function(m){ if (m.matches) setMenu(false); });
+
+/* canvas runner (DPR<=2, debounce, pause offscreen/hidden, still frame on reduce) */
+function runCanvas(cv, factory, stillT){
+  if (!cv || !cv.getContext) return null;
+  var ctx = cv.getContext('2d'); if (!ctx) return null;
+  var api = factory(ctx), W = 0, H = 0, running = false, visible = true, raf = 0, t0 = performance.now();
+  function resize(){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    api.build(W, H);
+  }
+  function loop(now){ if (!running) return; api.draw((now - t0)/1000); raf = requestAnimationFrame(loop); }
+  function start(){ if (running || reduce || !visible || document.hidden) return; running = true; raf = requestAnimationFrame(loop); }
+  function stop(){ running = false; cancelAnimationFrame(raf); }
+  function still(){ api.draw(stillT || 99); }
+  resize();
+  if (reduce) still(); else start();
+  var rt, lastW = W;
+  addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){
+    if (cv.clientWidth === lastW && Math.abs(cv.clientHeight - H) < 120 && running) return;  /* mobile URL bar */
+    lastW = cv.clientWidth; resize(); if (!running) still(); }, 150); });
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){ visible = en[0].isIntersecting; visible ? start() : stop(); }).observe(cv.parentElement);
+  }
+  document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+  return { still: still, isRunning: function(){ return running; } };
+}
+var pointer = {x:.5, y:.5, has:false};
+addEventListener('pointermove', function(e){ pointer.x = e.clientX/innerWidth; pointer.y = e.clientY/innerHeight; pointer.has = true; }, {passive:true});
+function clamp(v,a,b){ return v < a ? a : (v > b ? b : v); }
+function ease(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2; }
+
+
+/* hero: 絵コンテのコマが描かれ、再生ヘッドが通ると点灯する */
+var tcEl = document.getElementById('heroTc');
+function tc(sec){ var f = Math.floor(sec*24) % 24, s2 = Math.floor(sec) % 60, m = Math.floor(sec/60) % 60;
+  function z(n){ return (n < 10 ? '0' : '') + n; } return '00:' + z(m) + ':' + z(s2) + ':' + z(f); }
+runCanvas(document.getElementById('heroCanvas'), function(ctx){
+  var W, H, frames = [], lit = [];
+  function perim(x, y, w, h, k){
+    var L = 2*(w + h), d = L*k; ctx.beginPath(); ctx.moveTo(x, y);
+    var segs = [[x + w, y, w], [x + w, y + h, h], [x, y + h, w], [x, y, h]];
+    for (var i = 0; i < 4 && d > 0; i++){
+      var s = segs[i], len = s[2], px = i === 0 ? x : segs[i-1][0], py = i === 0 ? y : segs[i-1][1], f = Math.min(1, d/len);
+      ctx.lineTo(px + (s[0] - px)*f, py + (s[1] - py)*f); d -= len;
+    }
+    ctx.stroke();
+  }
+  function content(f, a){
+    var x = f.x, y = f.y, w = f.w, h = f.h;
+    ctx.strokeStyle = 'rgba(236,238,232,' + (.32*a) + ')'; ctx.lineWidth = 1; ctx.beginPath();
+    if (f.type === 0){ ctx.moveTo(x, y + h*.16); ctx.lineTo(x + w, y + h*.16);
+      ctx.rect(x + w*.08, y + h*.3, w*.5, h*.22); ctx.moveTo(x + w*.08, y + h*.66); ctx.lineTo(x + w*.8, y + h*.66); ctx.moveTo(x + w*.08, y + h*.78); ctx.lineTo(x + w*.6, y + h*.78); }
+    else if (f.type === 1){ ctx.moveTo(x + w*.42, y + h*.3); ctx.lineTo(x + w*.62, y + h*.5); ctx.lineTo(x + w*.42, y + h*.7); ctx.closePath();
+      ctx.moveTo(x + w*.1, y + h*.88); ctx.lineTo(x + w*.9, y + h*.88); }
+    else if (f.type === 2){ ctx.moveTo(x + w*.1, y + h*.8); for (var i = 1; i <= 6; i++) ctx.lineTo(x + w*(.1 + i*.13), y + h*(.8 - .5*Math.abs(Math.sin(i*1.7 + f.seed)))); }
+    else { ctx.arc(x + w*.3, y + h*.55, h*.18, 0, 6.283); ctx.moveTo(x + w*.56, y + h*.42); ctx.lineTo(x + w*.9, y + h*.42); ctx.moveTo(x + w*.56, y + h*.6); ctx.lineTo(x + w*.82, y + h*.6); }
+    ctx.stroke();
+  }
+  return {
+    build: function(w, h){
+      W = w; H = h; frames = [];
+      var mobile = W < 760, cols = mobile ? 3 : 5, rows = mobile ? 5 : 3;
+      var gx = mobile ? 12 : 26, left = mobile ? 14 : W*.06, right = mobile ? 14 : W*.2;
+      var fw = (W - left - right - gx*(cols - 1))/cols, fh = fw*9/16, gy = mobile ? 30 : 46;
+      var top = (H - (fh*rows + gy*(rows - 1)))/2;
+      for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++){
+        frames.push({x:left + c*(fw + gx), y:top + r*(fh + gy), w:fw, h:fh, type:(r*cols + c*3) % 4, seed:Math.random()*6, d:(r*cols + c)*.16, n:r*cols + c + 1});
+      }
+      lit = frames.map(function(){ return 0; });
+    },
+    draw: function(t){
+      ctx.clearRect(0, 0, W, H);
+      var loop = 7, head = t < 3.2 ? -1 : ((t - 3.2) % loop)/loop;
+      var hx = head < 0 ? -99 : -40 + head*(W + 80);
+      ctx.font = '10px "IBM Plex Mono", monospace';
+      frames.forEach(function(f, i){
+        var k = clamp((t - .2 - f.d)/1.1, 0, 1); if (k <= 0) return;
+        if (hx > f.x && hx < f.x + f.w) lit[i] = 1; else lit[i] *= .985;
+        if (t >= 90) lit[i] = (i % 4 === 1) ? .8 : .15;
+        var L = lit[i];
+        if (L > .02){ ctx.fillStyle = 'rgba(198,227,90,' + (.1*L) + ')'; ctx.fillRect(f.x, f.y, f.w, f.h); }
+        ctx.strokeStyle = 'rgba(' + (L > .3 ? '198,227,90,' + (.35 + .5*L) : '236,238,232,.26') + ')'; ctx.lineWidth = 1;
+        perim(f.x, f.y, f.w, f.h, k);
+        var a = clamp((k - .6)/.4, 0, 1);
+        if (a > 0){ content(f, a*(.6 + .4*L));
+          ctx.fillStyle = 'rgba(140,147,154,' + (.8*a) + ')'; ctx.fillText((f.n < 10 ? '0' : '') + f.n, f.x, f.y + f.h + 14); }
+      });
+      if (hx > -60 && hx < W + 60){
+        var g = ctx.createLinearGradient(hx - 60, 0, hx, 0);
+        g.addColorStop(0, 'rgba(198,227,90,0)'); g.addColorStop(1, 'rgba(198,227,90,.1)');
+        ctx.fillStyle = g; ctx.fillRect(hx - 60, 0, 60, H);
+        ctx.fillStyle = 'rgba(198,227,90,.85)'; ctx.fillRect(hx, 0, 1.5, H);
+      }
+      if (tcEl) tcEl.textContent = tc(t);
+    }
+  };
+}, 99);
+
+/* rail: フィルムの帯と再生ヘッド、タイムコード */
+var rHead = document.getElementById('railHead'), rRead = document.getElementById('railRead');
+railHooks.push(function(p){
+  rHead.style.top = (p*100) + '%'; rRead.style.top = (p*100) + '%';
+  var sec = Math.round(p*90), m = Math.floor(sec/60), s2 = sec % 60;
+  rRead.textContent = '00:0' + m + ':' + (s2 < 10 ? '0' : '') + s2;
+});
+
+
+/* reveal (one-shot) */
+var targets = document.querySelectorAll('.reveal, [data-draw]');
+function reveal(el){ el.classList.add('is-in'); revealHooks.forEach(function(h){ h(el); }); }
+if ('IntersectionObserver' in window && !reduce){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (!en.isIntersecting) return; reveal(en.target); io.unobserve(en.target); });
+  }, {threshold:.18, rootMargin:'0px 0px -6% 0px'});
+  targets.forEach(function(t){ io.observe(t); });
+} else { targets.forEach(reveal); }
+
+/* rail */
+var rail = document.getElementById('rail'), fill = document.getElementById('railFill');
+var secs = Array.prototype.slice.call(document.querySelectorAll('[data-rail]')), ticks = [];
+var lights = Array.prototype.slice.call(document.querySelectorAll('[data-light]'));
+function layoutTicks(){
+  ticks.forEach(function(t){ t.el.remove(); }); ticks = [];
+  var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  secs.forEach(function(s){
+    var p = clamp(s.offsetTop / max, 0, 1), el = document.createElement('i');
+    el.className = 'rail__tick'; el.style.top = (p*100) + '%'; rail.appendChild(el); ticks.push({p:p, el:el});
+  });
+}
+var band = document.querySelector('.band img');
+function onScroll(){
+  header.classList.toggle('is-scrolled', scrollY > 40);
+  var max = document.documentElement.scrollHeight - innerHeight;
+  var p = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
+  fill.style.transform = 'scaleY(' + p + ')';
+  ticks.forEach(function(t){ t.el.classList.toggle('is-passed', p >= t.p - .002); });
+  var mid = innerHeight/2, onLight = lights.some(function(s){ var r = s.getBoundingClientRect(); return r.top < mid && r.bottom > mid; });
+  rail.classList.toggle('on-light', onLight);
+  railHooks.forEach(function(h){ h(p, ticks); });
+  if (band && !reduce){
+    var r = band.parentElement.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < innerHeight){ var k = (r.top + r.height/2 - innerHeight/2)/innerHeight; band.style.transform = 'translateY(' + (k*-40).toFixed(1) + 'px)'; }
+  }
+}
+var ticking = false;
+addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(function(){ onScroll(); ticking = false; }); } }, {passive:true});
+addEventListener('load', function(){ layoutTicks(); onScroll(); });
+addEventListener('resize', function(){ layoutTicks(); onScroll(); });
+layoutTicks(); onScroll();
+
+requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.body.classList.add('is-loaded'); }); });
+})();
+</script>
+</body>
+</html>
